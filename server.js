@@ -10,8 +10,9 @@ const routes = require('./controllers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+require('dotenv').config();
 const sess = {
-  secret: 'Super secret',
+  secret: process.env.SESSION_SECRET,
   cookie: {},
   resave: false,
   saveUninitialized: true,
@@ -26,6 +27,7 @@ const hbs = exphbs.create({});
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,6 +35,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
+// Route to render the homepage
+app.get('/', (req, res) => {
+  res.render('homepage', { title: 'Our Blog' });
+});
+
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now Listening'));
+  app.listen(PORT, () => console.log('Server is running!'));
 });
