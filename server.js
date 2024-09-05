@@ -9,6 +9,8 @@ const routes = require('./controllers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Create the Handlebars.js engine object with custom helper functions
+
 require('dotenv').config();
 const sess = {
   secret: process.env.SESSION_SECRET,
@@ -25,6 +27,7 @@ app.use(session(sess));
 const hbs = exphbs.create({
   defaultLayout: 'main', // Set default layout to 'main.handlebars'
   partialsDir: path.join(__dirname, 'views/partials'), // Optional: Set path for partials
+  helpers, // Create the Handlebars.js engine object with custom helper functions
 });
 
 app.engine('handlebars', hbs.engine);
