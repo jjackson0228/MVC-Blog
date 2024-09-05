@@ -19,4 +19,10 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Define your routes...started get all
+router.get('/', (req, res) => {
+  res.send('Users route');
+});
 //Need Login
+
+module.exports = router;
