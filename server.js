@@ -22,10 +22,7 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({
-  defaultLayout: 'main', // Set default layout to 'main.handlebars'
-  partialsDir: path.join(__dirname, 'views/partials'), // Optional: Set path for partials
-});
+const hbs = exphbs.create({});
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
