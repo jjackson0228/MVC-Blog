@@ -37,11 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-// Route to render the homepage
-// app.get('/', (req, res) => {
-// res.render('homepage', { title: 'Our Blog' });
-// });
-
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Server is running on port ${PORT}!`));
 });
